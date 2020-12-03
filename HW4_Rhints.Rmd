@@ -1,0 +1,36 @@
+---
+title: "HW4_Rhints"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## HW4: Useful commands
+
+Here are some R commands to get you started with the statistical modeling for HW4! First, set up the relevant packages:
+
+```{r libraries}
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
+
+```
+
+## Generating random numbers
+
+To use R's random-number generator, use the 'rnorm' command. Then to find the number of flood events, use the 'which' command to locate all the sea level values larger than the flood threshold (in our case, 5 meters). Here is an example, assuming a mean of zero (`normal' conditions) and a standard deviation of 3 meters:
+
+```{r rnorm}
+# Generate random sea level values
+clim=rnorm(1000,mean = 0, sd = 3)
+
+# Find the ones that cause a flood
+flood=100*length(which(clim >= 5))/length(clim)
+
+```
+
+The total RISK of flooding is then the proportion of time that floods occur. 
+
+To include the effects of storm surge (or climate change), you would then add the relevant increase to your randomly generated sea level values, and repeat the same calculation.
